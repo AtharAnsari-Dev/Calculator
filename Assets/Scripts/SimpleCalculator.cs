@@ -9,8 +9,8 @@ public class SimpleCalculator : MonoBehaviour
 // For input from users
     public void AppendInput(string value)
     {
-        //if (expressionInput.text == "Error")
-            //expressionInput.text = "";
+        if (expressionInput.text == "Error")
+            expressionInput.text = "";
             
         expressionInput.text += value;
     }
@@ -25,7 +25,6 @@ public class SimpleCalculator : MonoBehaviour
         if (string.IsNullOrEmpty(expressionInput.text))
             return;
 
-        //try
         {
             float result = EvaluateExpression(expressionInput.text);
             
@@ -34,10 +33,7 @@ public class SimpleCalculator : MonoBehaviour
             else
                 expressionInput.text = result.ToString();
         }
-        //catch (System.Exception)
-        //{
-            //expressionInput.text = "Error";
-        //}
+        
     }
 
     private float EvaluateExpression(string expression)
@@ -80,8 +76,8 @@ public class SimpleCalculator : MonoBehaviour
                 float right = float.Parse(tokens[i + 1]);
                 float result = tokens[i] == "*" ? left * right : left / right;
                 
-                tokens[i - 1] = result.ToString(); // Replace left num with result
-                tokens.RemoveRange(i, 2);          // Remove operator and right num
+                tokens[i - 1] = result.ToString(); 
+                tokens.RemoveRange(i, 2);          
                 i--; 
             }
         }
